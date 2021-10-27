@@ -1,5 +1,5 @@
 package com.cybereason.xdr.bootstrap.service;
 
-public interface BusinessService {
+public interface ProcessService {
     void process(String message);
 }
