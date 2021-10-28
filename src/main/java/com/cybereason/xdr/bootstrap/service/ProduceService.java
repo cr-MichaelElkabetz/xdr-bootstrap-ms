@@ -1,5 +1,6 @@
 package com.cybereason.xdr.bootstrap.service;
 
 public interface ProduceService {
-    void sendMessage(String message);
+    void sendKafkaMessage(String message);
+    void sendPubsubMessage(String message);
 }
