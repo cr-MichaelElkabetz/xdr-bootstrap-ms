@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 public class ConsumeServiceImpl implements ConsumeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsumeServiceImpl.class);
 
-    @KafkaListener(topics = "${spring.kafka.consume.topic}")
     public void kafkaMessageReceiver(
             @Payload String message,
             @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {

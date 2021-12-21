@@ -10,7 +10,6 @@ import org.springframework.kafka.core.KafkaAdmin;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
 public class KafkaConfig {
 
     @Value(value = "${spring.kafka.server}")

@@ -15,8 +15,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
-@Configuration
+
 public class KafkaConsumerConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumerConfig.class);
 

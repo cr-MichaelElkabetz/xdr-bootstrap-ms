@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
 public class ProduceServiceImpl implements ProduceService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProduceServiceImpl.class);
 
-    @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
@@ -33,8 +34,10 @@ public class ProduceServiceImpl implements ProduceService {
     @Override
     public void sendPubsubMessage(String message) {
         try {
-            pubSubTemplate.publish(producePubsubTopic, message).get();
-            LOGGER.info("Sent Pubsub message: " + message + " successfully");
+            Map<String, String> map = new HashMap<>();
+            map.put("pluginType", "pipeline");
+            pubSubTemplate.publish(producePubsubTopic, message, map).get();
+            LOGGER.info("Published successfully A new PubSub message, topic: {}, message: {}", producePubsubTopic, message);
         } catch (InterruptedException e) {
             LOGGER.error("Unable to send Pubsub message: " + message + ", reason: " + e.getMessage(), e);
         } catch (ExecutionException e) {
